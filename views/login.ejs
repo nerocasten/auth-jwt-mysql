@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="wrp-login">
+		<div class="m-login">
+			<h3 class="m-h3-login">USER AUTHENTICATE</h3>
+			<label for=""><%= err=='fail'?'Đăng nhập thất bại':'' %></label>
+			<form action="/authenticate" id="frm-login" class="frm-login" method="post">
+				<input type="text" class="frm-item" value="" name="UserName" placeholder="Tài khoản">
+				<input type="password" class="frm-item" value="" name="Password" placeholder="Mật khẩu">
+				<input type="submit" class="frm-item" value="Xác nhận">
+			</form>
+		</div>
+	</div>
+	<style>
+		body,html{
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.wrp-login{
+			width: 100%;
+			height: 100%
+		}
+		.m-login{
+			width: 500px;
+			height: 100%;
+			margin: auto;
+			text-align: center;
+		}
+		.m-h3-login {
+			padding-top: 20%;
+		}
+		.frm-login{
+			text-align: center;
+			width: 200px;
+			margin: auto;
+		}
+		.frm-login>.frm-item{
+			padding: 5px 10px;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+	</style>
+</body>
+</html>

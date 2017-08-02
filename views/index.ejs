@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>	
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div>Xin chào <b><%= user.username %></b></div>
+	<div><a href="/logout">Thoát</a></div>
+	<table id="tbl-command">
+		<thead>
+			<tr>
+				<td>
+					<input type="text" placeholder="Nhập lệnh" id="txt-command">
+				</td>
+				<td>
+					<button id="btn-command">Chạy</button>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<textarea name="" id="tet-display" cols="30" rows="10" placeholder="Hiển thị"></textarea>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<style>
+		#tbl-command{
+			width: 400px;
+		}
+		#tbl-command input,textarea{
+			width: 100%;
+			padding: 5px;
+		}
+	</style>
+	<script src="http://localhost:9000/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect('http://localhost:9000');
+		socket.on('message', function (data) {
+	        console.log(data);
+	    });
+	    socket.on('command', function (data) {
+	        if(data.status=='success'){
+	        	$('#tet-display').val(data.data);
+	        }
+	    });
+		$('#btn-command').on('click', function(){
+			socket.emit('command', {text: $('#txt-command').val()})
+		});
+	</script>
+</body>
+</html>
