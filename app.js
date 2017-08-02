@@ -145,12 +145,7 @@ io.sockets.on('connection', function (socket) {
         		case 'show tables':
         			db.pquery('show tables').then(function(result){
         				if(result){
-        					var data = '';
-        					for(var i=0;i<result.length;i++){
-        						if(data.length>0) data += '\n';
-        						data += result[i]["Tables_in_tamgioi.gosu.vn"];
-        					}
-        					rep = {status:'success', data: data};
+        					rep = {status:'success', data: result};
         				}
         				socket.emit('command', rep);
         			});
